@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_demo/pages/login.dart';
-import 'package:flutter_demo/pages/main_screen.dart';
-import 'package:flutter_demo/pages/account_screen.dart';
-import 'package:flutter_demo/pages/setting_screen.dart';
+import 'package:fen_timer/pages/login.dart';
+import 'package:fen_timer/pages/main_screen.dart';
+import 'package:fen_timer/pages/account_screen.dart';
+import 'package:fen_timer/pages/setting_screen.dart';
 
 class Home extends StatefulWidget {
   final User user;
@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
     await widget.googleSignIn.signOut();
     Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (BuildContext context) {
-      return Login();
+      return const Login();
     }), (r) {
       return false;
     });
@@ -44,20 +44,20 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     List<Widget> screen = [
-      Container(
+      SizedBox(
         width: double.infinity,
-        child: MainScreen(user: widget.user),
+        child: MainScreen(user: widget.user,googleSignIn:widget.googleSignIn),
       ),
       Container(
         width: double.infinity,
         padding: const EdgeInsets.all(10),
-        child: AccountScreen(),
+        child: const AccountScreen(),
 
       ),
       Container(
         width: double.infinity,
         padding: const EdgeInsets.all(10),
-        child: SettingScreen(),
+        child: const SettingScreen(),
       ),
     ];
     

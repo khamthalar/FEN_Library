@@ -1,12 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_demo/pages/login.dart';
-import 'package:flutter_demo/pages/home.dart';
-// import 'package:flutter_demo/splash_screen.dart';
+import 'package:fen_timer/pages/login.dart';
+import 'package:fen_timer/pages/home.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

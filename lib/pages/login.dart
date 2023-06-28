@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_demo/pages/home.dart';
+import 'package:fen_timer/pages/home.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Login extends StatefulWidget {
@@ -127,7 +127,7 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
             Column(
               children: [
                 Image.asset(
-                  'images/login_logo.png',
+                  'images/nuol.png',
                   height: 200,
                   width: 300,
                 ),

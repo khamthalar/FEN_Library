@@ -1,4 +1,4 @@
-package com.example.flutter_demo
+package com.example.fen_timer
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater

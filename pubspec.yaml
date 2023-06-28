@@ -1,4 +1,4 @@
-name: flutter_demo
+name: fen_timer
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^4.3.0
+  firebase_auth: ^4.6.3
   firebase_core: ^2.8.0
   google_sign_in: ^6.0.2
   flutter_svg: ^2.0.4
@@ -40,6 +40,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_launcher_icons: ^0.12.0
   lottie: ^2.3.0
+  
 # flutter pub run flutter_launcher_icons:main   command to generate app icons
 flutter_icons:
   android: true
@@ -55,7 +56,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-
+  shared_preferences: ^2.1.0
   # Icons
   font_awesome_flutter: ^10.4.0
 
@@ -83,6 +84,7 @@ flutter:
     - images/lotties/
     - images/svg/
     - lib/pages/
+    - lib/components/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

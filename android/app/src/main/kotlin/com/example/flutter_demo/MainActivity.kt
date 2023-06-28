@@ -1,4 +1,4 @@
-package com.example.flutter_demo
+package com.example.fen_timer
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.SplashScreen
