@@ -7,6 +7,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:fen_timer/pages/home.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:get/get.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -55,13 +57,14 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
       //     Home(user: user, googleSignIn: _googleSignIn),
       //   ),
       // );
+      Get.to(Home(user: user, googleSignIn: _googleSignIn));
       //clear stack before push
-      Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (BuildContext context) {
-        return Home(user: user, googleSignIn: _googleSignIn);
-      }), (r) {
-        return false;
-      });
+      // Navigator.pushAndRemoveUntil(context,
+      //     MaterialPageRoute(builder: (BuildContext context) {
+      //   return Home(user: user, googleSignIn: _googleSignIn);
+      // }), (r) {
+      //   return false;
+      // });
     }
   }
 
