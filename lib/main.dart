@@ -11,23 +11,21 @@ import 'package:fen_timer/shared/logger/logger_utils.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
-  // runApp(MyApp());
-  runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    enableLog: true,
-    logWriterCallback: Logger.write,
-    initialRoute: AppPages.INITIAL,
-    getPages:AppPages.routes,
-    theme: Themes().lightTheme,
-    darkTheme: Themes().darkTheme,
-    themeMode: ThemeService().getThemeMode(),
-  ));
+  runApp(MyApp());
+  // runApp(GetMaterialApp(
+  //   debugShowCheckedModeBanner: false,
+  //   enableLog: true,
+  //   logWriterCallback: Logger.write,
+  //   initialRoute: AppPages.INITIAL,
+  //   getPages: AppPages.routes,
+  //   theme: Themes().lightTheme,
+  //   darkTheme: Themes().darkTheme,
+  //   themeMode: ThemeService().getThemeMode(),
+  // ));
 }
 
 class MyApp extends StatelessWidget {
@@ -45,24 +43,24 @@ class MyApp extends StatelessWidget {
         // colorSchemeSeed: Colors.grey,
         primarySwatch: Colors.blueGrey,
       ),
-      home: 
-      // SplashScreen(),
-      StreamBuilder(
+      home:
+          // SplashScreen(),
+          StreamBuilder(
         stream: _auth.authStateChanges(),
         builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-          if (snapshot.hasData) {
-            return Home(user: snapshot.data!, googleSignIn: _googleSignIn);
-          } else {
-            return const Login();
-          }
+          return const Home();
+          // if (snapshot.hasData) {
+          //   return Home(user: snapshot.data!, googleSignIn: _googleSignIn);
+          // } else {
+          //   return const Login();
+          // }
         },
       ),
     );
   }
 }
 
-
-class AppPages{
+class AppPages {
   static const INITIAL = Routes.ROOT;
   static final routes = [
     GetPage(
@@ -72,6 +70,7 @@ class AppPages{
     ),
   ];
 }
+
 abstract class Routes {
   static const ROOT = '/root';
 }

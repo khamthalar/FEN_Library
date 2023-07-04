@@ -1,10 +1,10 @@
 import 'dart:math';
-import 'package:fen_timer/pages/bebtime/widgets/pick_day.dart';
+// import 'package:fen_timer/pages/bebtime/widgets/pick_day.dart';
 import 'package:fen_timer/pages/global/controllers/clock_controller.dart';
 import 'package:fen_timer/pages/global/widgets/clock_painter.dart';
 import 'package:fen_timer/public/constants.dart';
 import 'package:fen_timer/public/size_config.dart';
-import 'package:fen_timer/theme/theme_service.dart';
+// import 'package:fen_timer/theme/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,9 +43,9 @@ class _BedTimePageState extends State<BedTimePage> {
     return Container(
       child: Column(
         children: [
-          _buildTitle(context),
+          // _buildTitle(context),
           Spacer(flex: 1),
-          PickDay(),
+          // PickDay(),
           Spacer(flex: 2),
           Stack(
             children: [
@@ -59,8 +59,10 @@ class _BedTimePageState extends State<BedTimePage> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).secondaryHeaderColor,
+                    kPrimaryColor,
+                    kSecondaryColor,
+                    // Theme.of(context).primaryColor,
+                    // Theme.of(context).secondaryHeaderColor,
                   ],
                   tileMode: TileMode.mirror,
                 ),
@@ -84,15 +86,17 @@ class _BedTimePageState extends State<BedTimePage> {
                 left: 0,
                 right: 0,
                 child: IconButton(
-                  icon: Icon(
-                    ThemeService().getThemeMode() == ThemeMode.dark
-                      ? CupertinoIcons.moon
-                      : CupertinoIcons.sunrise,
-                    color: Theme.of(context).primaryColor,
-                    size: getProportionateScreenWidth(26),
-                  ),
-                  onPressed: () => ThemeService().changeThemeMode(),
-                ),
+                    icon: Icon(
+                      CupertinoIcons.moon,
+                      // ThemeService().getThemeMode() == ThemeMode.dark
+                      //     ? CupertinoIcons.moon
+                      //     : CupertinoIcons.sunrise,
+                      color: kPrimaryColor,
+                      size: getProportionateScreenWidth(26),
+                    ),
+                    onPressed: () => {},
+                    // onPressed: () => ThemeService().changeThemeMode(),
+                    ),
               ),
               Positioned(
                 top: 4,
@@ -131,6 +135,7 @@ class _BedTimePageState extends State<BedTimePage> {
       ),
     );
   }
+
   Widget _buildTitle(context) {
     return Padding(
       padding: EdgeInsets.only(left: 16.0, right: 8.0),
@@ -156,6 +161,7 @@ class _BedTimePageState extends State<BedTimePage> {
       ),
     );
   }
+
   Widget _buildClock(context, dateTime) {
     return Padding(
       padding: EdgeInsets.symmetric(

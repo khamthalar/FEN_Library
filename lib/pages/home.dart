@@ -7,13 +7,16 @@ import 'package:fen_timer/pages/login.dart';
 import 'package:fen_timer/pages/main_screen.dart';
 import 'package:fen_timer/pages/account_screen.dart';
 import 'package:fen_timer/pages/setting_screen.dart';
+import 'package:fen_timer/pages/bebtime/bed_time_page.dart';
+import 'package:fen_timer/pages/stopwatch/stop_watch_page.dart';
 
 class Home extends StatefulWidget {
-  final User user;
-  final GoogleSignIn googleSignIn;
+  // final User user;
+  // final GoogleSignIn googleSignIn;
 
-  const Home({Key? key, required this.user, required this.googleSignIn})
-      : super(key: key);
+  // const Home({Key? key, required this.user, required this.googleSignIn})
+  //     : super(key: key);
+  const Home({Key? key}): super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -32,7 +35,7 @@ class _HomeState extends State<Home> {
     // sign out from Firebase Authentication
     await FirebaseAuth.instance.signOut();
     // sign out from Google Sign-In
-    await widget.googleSignIn.signOut();
+    // await widget.googleSignIn.signOut();
     Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (BuildContext context) {
       return const Login();
@@ -44,9 +47,15 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     List<Widget> screen = [
-      SizedBox(
+      // SizedBox(
+      //   width: double.infinity,
+      //   child: MainScreen(user: widget.user,googleSignIn:widget.googleSignIn),
+      // ),
+      Container(
         width: double.infinity,
-        child: MainScreen(user: widget.user,googleSignIn:widget.googleSignIn),
+        padding: const EdgeInsets.all(10),
+        child: const BedTimePage(),
+
       ),
       Container(
         width: double.infinity,
@@ -57,7 +66,8 @@ class _HomeState extends State<Home> {
       Container(
         width: double.infinity,
         padding: const EdgeInsets.all(10),
-        child: const SettingScreen(),
+        child: const StopWatchPage(),
+        // child: const SettingScreen(),
       ),
     ];
     
