@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 class ListStopWatch extends StatefulWidget {
+  const ListStopWatch({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _ListStopWatchState();
 }
@@ -16,13 +17,13 @@ class _ListStopWatchState extends State<ListStopWatch> {
     return GetBuilder<StopWatchController>(
       builder: (_) => ListView.builder(
         controller: _.scrollController,
-        padding: EdgeInsets.all(.0),
+        padding: const EdgeInsets.all(.0),
         itemCount: _.dateTimes.length,
         itemBuilder: (context, index) {
           return index == _.dateTimes.length - 1
               ? Container()
               : Container(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 24.0,
                     vertical: 12.0,
                   ),
@@ -39,24 +40,14 @@ class _ListStopWatchState extends State<ListStopWatch> {
                               fontSize: width / 24.0,
                               fontWeight: FontWeight.w600,
                             ),
-                                // Theme.of(context).textTheme.headline1.copyWith(
-                                //       fontSize: width / 24.0,
-                                //       fontFamily: 'Lato',
-                                //       fontWeight: FontWeight.w600,
-                                //     ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             format.format(_.dateTimes[index]),
                             style: TextStyle(
                               fontSize: width / 28.0,
                               fontWeight: FontWeight.w400,
                             ),
-                                // Theme.of(context).textTheme.headline1.copyWith(
-                                //       fontSize: width / 28.0,
-                                //       fontFamily: 'Lato',
-                                //       fontWeight: FontWeight.w400,
-                                //     ),
                           ),
                         ],
                       ),

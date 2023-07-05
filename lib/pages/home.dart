@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:fen_timer/pages/login.dart';
-import 'package:fen_timer/pages/main_screen.dart';
+// import 'package:fen_timer/pages/main_screen.dart';
 import 'package:fen_timer/pages/account_screen.dart';
-import 'package:fen_timer/pages/setting_screen.dart';
-import 'package:fen_timer/pages/bebtime/bed_time_page.dart';
+// import 'package:fen_timer/pages/setting_screen.dart';
+import 'package:fen_timer/pages/clock/clock_page.dart';
 import 'package:fen_timer/pages/stopwatch/stop_watch_page.dart';
+import 'package:flutter/cupertino.dart';
 
 class Home extends StatefulWidget {
-  // final User user;
-  // final GoogleSignIn googleSignIn;
+  final User user;
+  final GoogleSignIn googleSignIn;
 
-  // const Home({Key? key, required this.user, required this.googleSignIn})
-  //     : super(key: key);
-  const Home({Key? key}): super(key: key);
+  const Home({Key? key, required this.user, required this.googleSignIn})
+      : super(key: key);
+  // const Home({Key? key}): super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -54,19 +55,19 @@ class _HomeState extends State<Home> {
       Container(
         width: double.infinity,
         padding: const EdgeInsets.all(10),
-        child: const BedTimePage(),
-
-      ),
-      Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(10),
-        child: const AccountScreen(),
+        child: const ClockPage(),
 
       ),
       Container(
         width: double.infinity,
         padding: const EdgeInsets.all(10),
         child: const StopWatchPage(),
+
+      ),
+      Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(10),
+        child: AccountScreen(user: widget.user,googleSignIn:widget.googleSignIn),
         // child: const SettingScreen(),
       ),
     ];
@@ -109,16 +110,16 @@ class _HomeState extends State<Home> {
         selectedItemColor: Colors.blue,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'ໜ້າຫຼັກ',
+            icon: Icon(CupertinoIcons.clock),
+            label: 'ເວລາ',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.stopwatch),
+            label: 'ຈັບເວລາ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
             label: 'ບັນຊີ',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'ຕັ້ງຄ່າ',
           )
         ],
       ),

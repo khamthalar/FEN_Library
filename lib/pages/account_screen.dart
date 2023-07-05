@@ -1,52 +1,74 @@
 import 'package:flutter/material.dart';
-import 'package:fen_timer/pages/info.dart';
-import 'package:fen_timer/components/pagebuilder.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:lottie/lottie.dart';
+import 'package:fen_timer/pages/login.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+  final User user;
+  final GoogleSignIn googleSignIn;
+  const AccountScreen({Key? key, required this.user, required this.googleSignIn})
+      : super(key: key);
+
+  Future<void> _handleSignOut(BuildContext context) async {
+    // sign out from Firebase Authentication
+    await FirebaseAuth.instance.signOut();
+    // sign out from Google Sign-In
+    await googleSignIn.signOut();
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (BuildContext context) {
+      return Login();
+    }), (r) {
+      return false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Stack(
-        children: [
-          Image.asset(
-            'images/img01.jpg',
-            width: double.infinity,
-            fit: BoxFit.cover,
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: double.infinity,
+          // padding: const EdgeInsets.only(top: 15,),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton.small(
+                      onPressed: ()=>_handleSignOut(context),
+                      backgroundColor: Colors.white,
+                      elevation: 0,
+                      child: const Icon(
+                        Icons.power_settings_new_sharp,
+                        size: 35,
+                        color: Colors.black,
+                      ),
+                      
+                
+                    ),
+                ],
+              ),
+              CircleAvatar(
+                radius: 35,
+                backgroundImage: NetworkImage(user.photoURL!),
+              ),
+              Text(user.displayName ?? ''),
+              Text('${user.email}'),
+              Center(child: 
+                SizedBox(
+                  height: 400,
+                  width: double.infinity,
+                  child: Lottie.asset('images/lotties/hello.json')
+                ),
+              ),
+            ],
           ),
-          Positioned(
-            top: 10,
-            right: 10,
-            child: Container(
-              width: 100,
-              height: 50,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(28)),
-                  color: Colors.amber),
-              child: const Center(child: Text("10,000 ກີບ")),
-            ),
-          ),
-          const Positioned(
-            top: 10,
-            left: 5,
-            child: SizedBox(
-                width: 200,
-                child: Text(
-                  "ທົດລອງ\r\nທົດລອງ2",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
-                )),
-          ),
-          Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,OpenPage(const Info()));
-                },
-                child: const Text("Show Info Page")),
-          )
-        ],
-      ),
-    );
+        )
+      ],
+    ));
   }
 }

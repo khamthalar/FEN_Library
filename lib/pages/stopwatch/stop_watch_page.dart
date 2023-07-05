@@ -30,13 +30,13 @@ class _StopWatchPageState extends State<StopWatchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: width,
         child: SizedBox(
           width: double.infinity,
           child: Column(
             children: [
-              Spacer(flex: 2),
+              const Spacer(flex: 2),
               StreamBuilder(
                 stream: stopWatchController.currentTime.stream,
                 builder: (context, AsyncSnapshot snapshot) {
@@ -49,14 +49,14 @@ class _StopWatchPageState extends State<StopWatchPage> {
                       snapshot.data, stopWatchController.dateTimes[0]);
                 },
               ),
-              Spacer(flex: 1),
-              Container(
+              const Spacer(flex: 1),
+              SizedBox(
                 height: height * .3,
-                child: ListStopWatch(),
+                child: const ListStopWatch(),
               ),
-              Spacer(flex: 1),
-              StopWatchControll(),
-              Spacer(flex: 3),
+              const Spacer(flex: 1),
+              const StopWatchControll(),
+              const Spacer(flex: 3),
             ],
           ),
         ),
@@ -71,84 +71,71 @@ class _StopWatchPageState extends State<StopWatchPage> {
       percent: stopWatchController.percent,
       circularStrokeCap: CircularStrokeCap.round,
       backgroundColor: kSecondaryLightColor,
-      linearGradient: LinearGradient(
+      linearGradient: const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomCenter,
         colors: [
           kPrimaryColor,
           kSecondaryColor,
-          // Theme.of(context).primaryColor,
-          // Theme.of(context).secondaryHeaderColor,
         ],
         tileMode: TileMode.mirror,
       ),
       animationDuration: 1000,
       animateFromLastPercent: true,
       rotateLinearGradient: true,
-      center: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text:
-                        '${stopWatchController.formatTime(dateTime.hour)}:${stopWatchController.formatTime(dateTime.minute)}:${stopWatchController.formatTime(dateTime.second)}',
-                    style: TextStyle(
+      center: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text:
+                      '${stopWatchController.formatTime(dateTime.hour)}:${stopWatchController.formatTime(dateTime.minute)}:${stopWatchController.formatTime(dateTime.second)}',
+                  style: TextStyle(
                       color: kSecondaryDarkColor,
                       fontSize: width / 12.0,
                       fontWeight: FontWeight.w400,
-                      ),
-                    // Theme.of(context).textTheme.headline1.copyWith(
-                    //       fontSize: width / 12.0,
-                    //       fontFamily: 'Lato',
-                    //       fontWeight: FontWeight.w400,
-                    //     ),
-                  ),
-                  TextSpan(
-                    text:
-                        ':${stopWatchController.formatTime((dateTime.millisecond / 17).round())}',
-                    style: TextStyle(
+                    ),
+                ),
+                TextSpan(
+                  text:
+                      ':${stopWatchController.formatTime((dateTime.millisecond / 17).round())}',
+                  style: TextStyle(
                       color: kAccentLightColor,
                       fontSize: width / 18.0,
-                      fontWeight: FontWeight.w400,),
-                    // Theme.of(context).textTheme.headline1.copyWith(
-                    //       fontSize: width / 18.0,
-                    //       fontFamily: 'Lato',
-                    //       fontWeight: FontWeight.w400,
-                    //     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 8.0),
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text:
-                        '${stopWatchController.formatTime(dateTimePrevious.hour)}:${stopWatchController.formatTime(dateTimePrevious.minute)}:${stopWatchController.formatTime(dateTimePrevious.second)}',
-                    style: TextStyle(
-                      color: kSecondaryDarkColor,
-                      fontSize: width / 18.0,
                       fontWeight: FontWeight.w400,
                     ),
-                  ),
-                  TextSpan(
-                    text:
-                        ':${stopWatchController.formatTime((dateTimePrevious.millisecond / 17).round())}',
-                    style: TextStyle(
-                      color: kSecondaryDarkColor,
-                      fontSize: width / 26.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 8.0),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text:
+                      '${stopWatchController.formatTime(dateTimePrevious.hour)}:${stopWatchController.formatTime(dateTimePrevious.minute)}:${stopWatchController.formatTime(dateTimePrevious.second)}',
+                  style: TextStyle(
+                    color: kSecondaryDarkColor,
+                    fontSize: width / 18.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                TextSpan(
+                  text:
+                      ':${stopWatchController.formatTime((dateTimePrevious.millisecond / 17).round())}',
+                  style: TextStyle(
+                    color: kSecondaryDarkColor,
+                    fontSize: width / 26.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

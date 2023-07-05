@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
+import 'dart:developer' as dev;
 
 class StopWatchController extends GetxController {
-  StreamController<DateTime> currentTime =
-      StreamController<DateTime>.broadcast();
-  ScrollController scrollController = new ScrollController();
+  StreamController<DateTime> currentTime = StreamController<DateTime>.broadcast();
+  ScrollController scrollController = ScrollController();
   DateTime dateTime = DateTime(0, 0, 0, 0, 0, 0);
   Timer? timer;
   double percent = .0;
@@ -29,9 +29,16 @@ class StopWatchController extends GetxController {
 
   startTimer() {
     isRunning = true;
+    dev.log(dateTime.second.toString());
     update();
-    timer = Timer.periodic(Duration(milliseconds: 17), (timer) {
-      dateTime = dateTime.add(Duration(milliseconds: 17));
+    timer = Timer.periodic(const Duration(milliseconds: 17), (timer) {
+      dateTime = dateTime.add(const Duration(milliseconds: 17));
+      // dateTime = dateTime.subtract(const Duration(milliseconds: 17));
+      // if (dateTime == DateTime(0, 0, 0, 0, 0, 0)) {
+      //   // dateTime = DateTime(0, 0, 0, 0, 0, 0); // Ensure dateTime doesn't go below zero
+      //   isRunning = false; // Set isRunning to false when the countdown reaches zero
+      //   timer.cancel(); // Stop the timer
+      // }
       currentTime.add(dateTime);
       percent = dateTime.second / 60.0;
       update();

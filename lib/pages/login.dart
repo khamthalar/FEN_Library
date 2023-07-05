@@ -58,14 +58,14 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
       //   ),
       // );
       // Get.to(Home(user: user, googleSignIn: _googleSignIn));
-      Get.to(const Home());
+      // Get.to(const Home());
       //clear stack before push
-      // Navigator.pushAndRemoveUntil(context,
-      //     MaterialPageRoute(builder: (BuildContext context) {
-      //   return Home(user: user, googleSignIn: _googleSignIn);
-      // }), (r) {
-      //   return false;
-      // });
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return Home(user: user, googleSignIn: _googleSignIn);
+      }), (r) {
+        return false;
+      });
     }
   }
 
